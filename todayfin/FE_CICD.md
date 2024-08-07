@@ -358,11 +358,6 @@ pipeline {
         ALPHA_VANTAGE_API_KEY = credentials('alpha_vantage_api_key')
     }
 
-    // dev 브랜치만 트리거
-    when {
-            branch '*/dev'
-        }
-
     stages {
         stage('Checkout') {
             steps {

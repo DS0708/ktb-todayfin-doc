@@ -358,6 +358,11 @@ pipeline {
         ALPHA_VANTAGE_API_KEY = credentials('alpha_vantage_api_key')
     }
 
+    // dev 브랜치만 트리거
+    when {
+            branch '*/dev'
+        }
+
     stages {
         stage('Checkout') {
             steps {
@@ -424,3 +429,4 @@ Jenkinsfile을 프로젝트의 루트 디렉토리에 생성해야한다.
 - 도커 이미지 빌드 시 시간이 오래 걸린다. 약 3분 정도
 - 지금 테스트 용으로 트리거 브랜치를 feat/cd로 설정하였다. 일단 dev로 바꾼 후에 Front-end개발자가 main 브랜치로 merge하면 그때 트리거 브랜치랑 Jenkinsfile찾는 브랜치를 main으로 변경해야 한다.
 - 무중단 배포 -> 현재 배포 시 잠깐 동안 도커 컨테이너가 종료된다. LB나 nginx를 이용하여 블루/그린 무중단 배포 진행하기.
+- 특정 브랜치에만 trigger 되도록 설정하기
